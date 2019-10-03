@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  uuid: MyString
+  description: 
+  amount: 1
+  currency: MyString
+  employee: one
+
+two:
+  uuid: MyString
+  description: 
+  amount: 1
+  currency: MyString
+  employee: two
