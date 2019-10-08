@@ -6,6 +6,6 @@ module Types
     field :amount, Integer, null: false
     field :currency, String, null: false
     field :approved, Boolean, null: true
-    field :employee, Types::EmployeeType, null: false
+    field :employee, [Types::EmployeeType], null: false
   end
 end

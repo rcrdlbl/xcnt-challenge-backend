@@ -26,7 +26,7 @@ module Types
           description: "Returns a list of all expense objects"
 
     def expenses
-      Expenses.all
+      Expense.all
     end
 
     field :expense,
