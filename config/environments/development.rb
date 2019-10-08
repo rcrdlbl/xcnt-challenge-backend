@@ -45,6 +45,12 @@ Rails.application.configure do
   config.active_record.verbose_query_logs = true
 
 
+  # Added to enable graphql viewer in development
+  require "sprockets/railtie"
+  config.middleware.use Rack::MethodOverride
+
+
+
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
