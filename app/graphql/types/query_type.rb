@@ -29,13 +29,12 @@ module Types
       Expense.all
     end
 
-    field :expense,
-          [Types::ExpenseType],
-          null: false,
-          description: "Returns a single expense object"
+    field :expense, Types::ExpenseType, null: false, description: "Returns a single expense object" do
+      argument :id, String, required: true
+    end
 
-    def expense
-      Expense.find_by(:id)
+    def expense(id)
+      Expense.find_by(uuid: id)
     end
 
   end

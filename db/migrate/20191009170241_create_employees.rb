@@ -1,11 +1,8 @@
 class CreateEmployees < ActiveRecord::Migration[5.2]
   def change
-    create_table :employees do |t|
-      t.string :uuid
-      t.string :last_name
+    create_table :employees, id: :uuid do |t|
       t.string :first_name
-
-      t.timestamps
+      t.string :last_name
     end
   end
 end

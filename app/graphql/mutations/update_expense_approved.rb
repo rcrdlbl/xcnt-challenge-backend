@@ -6,6 +6,7 @@ module Mutations
 
     # TODO: define arguments
     # argument :name, String, required: true
+    argument :uuid, String, required: true
     argument :approved, Boolean, required: true
 
     # TODO: define resolve method
