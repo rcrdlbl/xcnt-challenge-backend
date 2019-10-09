@@ -11,13 +11,12 @@ module Types
       Employee.all
     end
 
-    field :employee,
-          [Types::EmployeeType],
-          null: false,
-          description: "Returns a single employee object"
+    field :employee, Types::EmployeeType, null: false, description: "Returns a single employee object" do
+      argument :id, ID, required: true
+    end
 
-    def employee
-      Employee.find_by(:id)
+    def employee(id:)
+      Employee.find(id)
     end
 
     field :expenses,
@@ -30,11 +29,11 @@ module Types
     end
 
     field :expense, Types::ExpenseType, null: false, description: "Returns a single expense object" do
-      argument :id, String, required: true
+      argument :id, ID, required: true
     end
 
-    def expense(id)
-      Expense.find_by(uuid: id)
+    def expense(id:)
+      Expense.find(id)
     end
 
   end
