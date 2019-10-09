@@ -1,11 +1,5 @@
 module Types
   class MutationType < Types::BaseObject
-    field :updateExpenseApproved, mutation: Mutations::UpdateExpenseApproved
-    # TODO: remove me
-    field :test_field, String, null: false,
-      description: "An example field added by the generator"
-    def test_field
-      "Hello World"
-    end
+    field :updateExpenseApproved, mutation: Mutations::UpdateExpenseApproved, description: "Takes an expense id and a boolean and changes the approved field on the expense object"
   end
 end
