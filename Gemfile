@@ -11,6 +11,7 @@ gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
 # GraphQL
 gem "graphql"
+gem 'graphql-batch'
 
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
