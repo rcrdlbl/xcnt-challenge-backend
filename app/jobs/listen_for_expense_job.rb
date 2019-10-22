@@ -8,7 +8,7 @@ class ListenForExpenseJob < ApplicationJob
 
     response = HTTP.get("https://cashcog.xcnt.io/stream")
     response.body.each do |piece|
-      parsed = piece && piece.length >= 2 ? JSON.parse(piece) : nil
+      parsed = piece && piece.length >= 2 && JSON.parse(piece) ? JSON.parse(piece) : nil
       if parsed
         expense = Expense.find_or_create_by(id: parsed["uuid"]) do |exp|
           exp.description = parsed["description"]
