@@ -39,10 +39,22 @@ module Types
       Expense.all
     end
 
-    field :expenses_connection, Types::ExpenseType.connection_type, null: false, description: "Paginated Version of expenses field"
+    field :expenses_connection, Types::ExpenseType.connection_type, null: false, description: "Paginated Version of expenses field" do
+      argument :sort_date, String, required: false
+      argument :sort_amount, String, required: false
+      argument :awaiting_approval, Boolean, required: false
+    end
 
     def expenses_connection(**_args)
-      Expense.all
+      if _args[:sort_date]
+        _args[:sort_date] == "ASC" ? Expense.all.order(created_at: :asc) : Expense.all.order(created_at: :desc)
+      elsif _args[:sort_amount]
+        _args[:sort_amount] == "ASC" ? Expense.all.order(amount: :asc) : Expense.all.order(amount: :desc)
+      elsif _args[:awaiting_approval] != nil
+        _args[:awaiting_approval] ? Expense.where("approved IS ?", nil) : Expense.where("approved IS NOT ?", nil)
+      else
+        Expense.all
+      end
     end
 
     field :expense, Types::ExpenseType, null: false, description: "Returns a single expense object" do
