@@ -1,24 +1,15 @@
-# README
+# XCNT Challenge: Backend
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This rails app is the backend to a hypothetical expense software created as part of a coding challenge.
 
-Things you may want to cover:
+## Steps to install locally
 
-* Ruby version
+1. Clone or download this repository
 
-* System dependencies
+2. Ensure bundler and ruby 2.3.3 are usable on your environment
 
-* Configuration
+3. Using a terminal, navigate into the project directory and run `bundle install`
 
-* Database creation
+4. Run `rails s`
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+5. To stop the local server press `CTRL + C` in your terminal
