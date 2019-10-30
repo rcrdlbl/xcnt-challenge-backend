@@ -30,30 +30,27 @@ module Types
 
     # Expense Fields
 
-    field :expenses,
-          [Types::ExpenseType],
-          null: false,
-          description: "Returns a list of all expense objects"
-
-    def expenses(**_args)
-      Expense.all
-    end
-
-    field :expenses_connection, Types::ExpenseType.connection_type, null: false, description: "Paginated Version of expenses field" do
+    field :expenses, Types::ExpenseType.connection_type, null: false, description: "Paginated Version of expenses field" do
       argument :sort_date, String, required: false
       argument :sort_amount, String, required: false
       argument :awaiting_approval, Boolean, required: false
+      argument :employee_id, ID, required: false
     end
 
-    def expenses_connection(**_args)
+    def expenses(**_args)
+      expenses = Expense.all
+      if _args[:employee_id]
+        expenses = Employee.find(_args[:employee_id]).expenses
+      end
+
       if _args[:sort_date]
-        _args[:sort_date] == "ASC" ? Expense.all.order(created_at: :asc) : Expense.all.order(created_at: :desc)
+        _args[:sort_date] == "ASC" ? expenses.order(created_at: :asc) : expenses.order(created_at: :desc)
       elsif _args[:sort_amount]
-        _args[:sort_amount] == "ASC" ? Expense.all.order(amount: :asc) : Expense.all.order(amount: :desc)
+        _args[:sort_amount] == "ASC" ? expenses.order(amount: :asc) : expenses.order(amount: :desc)
       elsif _args[:awaiting_approval] != nil
-        _args[:awaiting_approval] ? Expense.where("approved IS ?", nil) : Expense.where("approved IS NOT ?", nil)
+        _args[:awaiting_approval] ? expenses.where("approved IS ?", nil) : expenses.where("approved IS NOT ?", nil)
       else
-        Expense.all
+        expenses
       end
     end
 
