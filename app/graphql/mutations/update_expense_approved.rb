@@ -1,15 +1,17 @@
+# frozen_string_literal: true
+
 module Mutations
   class UpdateExpenseApproved < GraphQL::Schema::RelayClassicMutation
-    # TODO: define return fields
+    # define return fields
     # field :post, Types::PostType, null: false
     field :expense, Types::ExpenseType, null: false
 
-    # TODO: define arguments
+    # define arguments
     # argument :name, String, required: true
     argument :id, ID, required: true
     argument :approved, Boolean, required: true
 
-    # TODO: define resolve method
+    # define resolve method
     # def resolve(name:)
     #   { post: ... }
     # end

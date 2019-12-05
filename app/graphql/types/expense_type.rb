@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 module Types
   class ExpenseType < Types::BaseObject
-    graphql_name "expense"
+    graphql_name 'expense'
     field :id, ID, null: false
     field :description, String, null: false
     field :amount, Integer, null: false
